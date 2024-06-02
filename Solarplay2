@@ -1,0 +1,23 @@
+import RPi.GPIO as GPIO
+import time
+
+# Настройка пинов
+LED_PIN = 18
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_PIN, GPIO.OUT)
+
+def turn_on_light():
+    GPIO.output(LED_PIN, GPIO.HIGH)
+
+def turn_off_light():
+    GPIO.output(LED_PIN, GPIO.LOW)
+
+try:
+    while True:
+        turn_on_light()
+        time.sleep(7200)  # Включаем свет на 2 часа
+        turn_off_light()
+        time.sleep(7200)  # Выключаем свет на 2 часа
+
+except KeyboardInterrupt:
+    GPIO.cleanup()
